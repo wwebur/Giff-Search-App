@@ -8,9 +8,9 @@ const Searchbox: React.FC = () => {
   }
   
   return (
-    <form className="justify-center" onSubmit={handleSubmit}>
-      <input onChange={(e: React.ChangeEvent<HTMLInputElement>)=> setQuery(e.target.value)} placeholder="Buscar..." />
-      <button type="submit">Buscar</button>
+    <form className="flex justify-center" onSubmit={handleSubmit}>
+      <input className="rounded-sm px-2" onChange={(e: React.ChangeEvent<HTMLInputElement>)=> setQuery(e.target.value)} placeholder="Buscar..." />
+      <button className="rounded-md px-2 bg-red-500" type="submit">Buscar</button>
     </form>
   )
 }

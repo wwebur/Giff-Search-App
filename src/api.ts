@@ -10,7 +10,7 @@ async function trending() {
       params: {
         "api_key": API_KEY,
         "limit": LIMIT_GIF,
-      }
+      },
     })
       .then(response => response.data.data)
   } catch (error) {
