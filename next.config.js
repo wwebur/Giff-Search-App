@@ -2,7 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['media.giphy.com', 'http://mlb.com'],
+    domains: [
+      'media0.giphy.com',
+      'media1.giphy.com', 
+      'media2.giphy.com', 
+      'media3.giphy.com', 
+      'media4.giphy.com', 
+      'giphy.com',
+    ],
   },
 }
 
