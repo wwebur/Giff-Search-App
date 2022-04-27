@@ -1,13 +1,13 @@
-import { getFips } from "crypto"
 import { useState } from "react"
 import { FaShareAlt } from "react-icons/fa"
-import { FacebookIcon, FacebookShareButton, FacebookShareCount, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share"
+import { FacebookIcon, FacebookShareButton, TelegramIcon, TelegramShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share"
 
 interface Props {
   gifUrl: string;
+  text?: string;
 }
 
-const Dropdown: React.FC<Props> = ({ gifUrl }) => {
+const Dropdown: React.FC<Props> = ({ gifUrl, text }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const open = ()=> (isOpen) ? setIsOpen(false) : setIsOpen(true)
   
@@ -15,8 +15,9 @@ const Dropdown: React.FC<Props> = ({ gifUrl }) => {
     <>
 <div className="relative inline-block text-left">
   <div>
-    <button onClick={open} type="button" className="inline-flex justify-center w-full rounded-md border border-gray-600 shadow-sm p-1 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-slate-800  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
-      <FaShareAlt className='text-slate-300 justify-self-end hover:text-slate-800' size={15} />
+    <button onClick={open} type="button" className="inline-flex gap-4 justify-center rounded-md p-1 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+      <FaShareAlt className='bg-slate-300 justify-self-end px-1 rounded-md' size={25} />
+      <p className="font-semibold text-slate-300 text-lg">{text}</p>
     </button>
   </div>
   {

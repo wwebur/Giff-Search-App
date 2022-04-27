@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { FaSearch } from 'react-icons/fa'
-import { search } from "../src/api"
+import { searchGif } from "../src/api"
 
 const Searchbox: React.FC = () => {
   const [query, setQuery] = useState<string>("")
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault()
-    search(query)
+    searchGif(query)
     console.log(query)
   }
   

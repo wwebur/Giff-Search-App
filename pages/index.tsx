@@ -1,16 +1,20 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Searchbox from '../src/Searchbox'
-import { trending, search } from '../src/api'
+import { trending } from '../src/api'
 import Card from '../src/Card'
 import Masonry from "react-masonry-css"
 import Navbar from '../src/Navbar'
+import Link from "next/link"
+import { useState } from 'react'
 interface Props {
-  gifs: any;
+  trendingGifs: any;
+  gif: any;
 }
 
-const Home: NextPage<Props> = ({ gifs }) => {
-  console.log(gifs)
+const Home: NextPage<Props> = ({ trendingGifs, gif }) => {
+  const [searchGifs, setSearchGifs] = useState<any[]>([])
+  console.log(trendingGifs)
 
   const breakpoints = {
     default: 4,
@@ -27,7 +31,6 @@ const Home: NextPage<Props> = ({ gifs }) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className='justify-center align-center '>
-          <Navbar />
           <h1 className='text-3xl font-bold text-slate-400 my-10'>ADVANCED JS STUDY GROUP</h1>
           <Searchbox />
           <div className=''>
@@ -37,7 +40,11 @@ const Home: NextPage<Props> = ({ gifs }) => {
               className="my-masonry-grid"
               columnClassName="my-masonry-grid_column"
             >
-              {gifs.map((item:any)=> <div key={item.id}><Card gif={item} /></div>)}
+              {
+                searchGifs.length
+                ? searchGifs.map((item:any)=> <Card key={item.id} gif={item} />)
+                : trendingGifs.map((item:any)=> <Card key={item.id} gif={item} />)
+              }
             </Masonry>
           </div>
         </main>
@@ -46,11 +53,11 @@ const Home: NextPage<Props> = ({ gifs }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const gifs = await trending();
+  const trendingGifs = await trending();
 
   return {
     props: {
-      gifs,
+      trendingGifs,
     },
     revalidate: 3600*24,
   };

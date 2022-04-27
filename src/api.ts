@@ -18,19 +18,33 @@ async function trending() {
   }
 }
 
-async function search( query: string ) {
+async function searchGif( query: string ) {
   try {
     return await axios.get(`${BASE_URL}/search`, {
       params: {
-        "q": query,
         "api_key": API_KEY,
         "limit": LIMIT_GIF,
+        "q": query,
       }
     })
-      .then(res => res.data)
+      .then(res => console.log(res.data))
   } catch (error) {
     console.error(error)
   }
 }
 
-export { trending, search }
+async function getGifById( gif_id: string ) {
+  try {
+    return await axios.get(`${BASE_URL}/${gif_id}`, {
+      params: {
+        "api_key": API_KEY,
+      }
+    })
+      .then(res => res.data.data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export { trending, searchGif, getGifById }
+//https://api.giphy.com/v1/gifs/search?api_key=YuJk7enKH0yFvIAHCWzLeAFWmEBjOBRO&q=messi&limit=25
