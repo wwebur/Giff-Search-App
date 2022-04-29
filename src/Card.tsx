@@ -23,7 +23,7 @@ const Card: React.FC<Props> = ({ gif }) => {
       </Link>
       <div className='flex justify-between gap-2 items-center mx-4'>
         <button onClick={like}>
-          <FaHeart className={` ${isLiked ? "text-red-500" : "text-gray-300"}`}  size={20} />
+          <FaHeart className={` ${isLiked ? "text-red-500" : "text-gray-300"}`} size={20} />
         </button>
         <p className="text-xs text-center my-2 text-gray-300">{gif.title}</p>
         <Dropdown gifUrl={gif.url} />

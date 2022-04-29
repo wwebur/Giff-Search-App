@@ -1,8 +1,6 @@
 import { GetStaticPaths, GetStaticProps, } from "next";
 import { trending } from "../src/api";
 import { getGifById } from "../src/api"
-import Card from "../src/Card";
-import Image from "next/image"
 import GifDetail from "../src/GifDetail";
 
 interface Props {
