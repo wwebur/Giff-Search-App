@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaTwitter } from "react-icons/fa";
+import useLocalStorage from "../src/useLocalStorage";
 import users from "../src/users"
 
 interface Inputs {
@@ -18,6 +19,7 @@ interface User {
 const Login = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
   const [userDatabase, setUserDatabase] = useState<User[]>([])
+  const [user, setUser] = useLocalStorage("gifUser", "")
 
   useEffect(()=> {
     setUserDatabase(JSON.parse(users))
@@ -27,6 +29,8 @@ const Login = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
     const existUser: User | undefined = userDatabase.find(user => user.username === data.username)
+    setUser(user)
+    console.log(user)
 }
 
   return (

@@ -7,6 +7,7 @@ import Masonry from "react-masonry-css"
 import Navbar from '../src/Navbar'
 import Link from "next/link"
 import { useState } from 'react'
+import useLocalStorage from "../src/useLocalStorage"
 interface Props {
   trendingGifs: any;
   gif: any;
@@ -14,6 +15,9 @@ interface Props {
 
 const Home: NextPage<Props> = ({ trendingGifs, gif }) => {
   const [searchGifs, setSearchGifs] = useState<any[]>([])
+
+  const [user, setUser] = useLocalStorage("gifUser", "")
+  
   console.log(trendingGifs)
 
   const breakpoints = {
