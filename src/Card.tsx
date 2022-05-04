@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import Dropdown from './Dropdown';
 import Link from "next/link"
+import Image from "next/image"
 interface Props {
   gif: any;
 }
@@ -14,8 +15,11 @@ const Card: React.FC<Props> = ({ gif }) => {
     <div className="card">
       <Link href={`/${gif.id}`}>
         <a>
-          <img
+          <Image
             width="100%"
+            height="100%"
+            layout='responsive'
+            objectFit='cover'
             src={gif.images.fixed_height.url} 
             alt={gif.title} 
           />

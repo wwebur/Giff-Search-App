@@ -26,11 +26,12 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    const existUser: User | undefined = userDatabase.find(user => user.username === data.username)
+    const existUser: User | undefined = userDatabase.find(user => user.username === data.username && user.password === data.password)
+    existUser ? console.log("existe el user") : console.log("no existe")
 }
 
   return (
-    <div className="max-w-xs">
+    <div className="max-w-xs mt-60 mx-auto">
       <form 
         onSubmit={handleSubmit(onSubmit)} 
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
