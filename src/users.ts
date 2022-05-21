@@ -3,7 +3,7 @@ interface User {
   username: string;
   password: string;
   fullname: string;
-};
+}
 
 const users: User[] = [
   {

@@ -1,31 +1,32 @@
-import { useState } from 'react';
-import { FaHeart } from 'react-icons/fa';
-import Dropdown from './Dropdown';
-import Link from "next/link"
-import Image from "next/image"
+import {useState} from "react";
+import {FaHeart} from "react-icons/fa";
+import Link from "next/link";
+import Image from "next/image";
+
+import Dropdown from "./Dropdown";
 interface Props {
   gif: any;
 }
 
-const Card: React.FC<Props> = ({ gif }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false)
-  const like = ()=> (isLiked) ? setIsLiked(false) : setIsLiked(true)
+const Card: React.FC<Props> = ({gif}) => {
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const like = () => (isLiked ? setIsLiked(false) : setIsLiked(true));
 
   return (
-    <div className="card">
+    <div className="card" data-testid="card">
       <Link href={`/${gif.id}`}>
         <a>
           <Image
-            width="100%"
+            alt={gif.title}
             height="100%"
-            layout='responsive'
-            objectFit='cover'
-            src={gif.images.fixed_height.url} 
-            alt={gif.title} 
+            layout="responsive"
+            objectFit="cover"
+            src={gif.images.original.webp}
+            width="100%"
           />
         </a>
       </Link>
-      <div className='flex justify-between gap-2 items-center mx-4'>
+      <div className="flex justify-between gap-2 items-center mx-4">
         <button onClick={like}>
           <FaHeart className={` ${isLiked ? "text-red-500" : "text-gray-300"}`} size={20} />
         </button>
@@ -33,7 +34,7 @@ const Card: React.FC<Props> = ({ gif }) => {
         <Dropdown gifUrl={gif.url} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
