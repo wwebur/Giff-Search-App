@@ -1,29 +1,27 @@
-import Link from "next/link";
-import {FaTwitter} from "react-icons/fa";
+import {useRouter} from "next/router";
 
-import useLocalStorage from "./useLocalStorage";
+import {userLogout} from "./redux/features/userSlice";
+import {useAppDispatch, useAppSelector} from "./redux/hooks";
 
-interface Props {
-  isLogin: boolean;
-}
+const LoginButton: React.FC = () => {
+  const user = useAppSelector((state) => state.user.username);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-const LoginButton: React.FC<Props> = ({isLogin}) => {
-  const [removeValue] = useLocalStorage("gifUser", "");
-  const url = isLogin ? "/" : "/login";
+  const handleClick = () => {
+    console.log("hello", user);
+    Boolean(user) ? dispatch(userLogout()) : router.push("/login");
+  };
 
   return (
-    <Link href={url}>
-      <a>
-        <button
-          className="flex items-center border rounded-md px-4 py-1 font-semibold hover:text-slate-500 text-xs md:text-md"
-          id="login-button"
-          onClick={isLogin ? removeValue : console.log("hello")}
-        >
-          <FaTwitter className="mr-2" size={16} />
-          {isLogin ? "Logout" : "Login"}
-        </button>
-      </a>
-    </Link>
+    <button
+      className="flex items-center border rounded-md px-4 py-1 font-semibold hover:text-slate-500 text-xs md:text-md"
+      id="login-button"
+      onClick={handleClick}
+    >
+      {/* <FaTwitter className="mr-2" size={16} /> */}
+      {Boolean(user) ? "Logout" : "Login"}
+    </button>
   );
 };
 

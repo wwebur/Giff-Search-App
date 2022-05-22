@@ -1,50 +1,31 @@
-import {useEffect, useState} from "react";
 import {useForm, SubmitHandler} from "react-hook-form";
-import {FaTwitter} from "react-icons/fa";
 import {useRouter} from "next/router";
 
-import useLocalStorage from "../src/useLocalStorage";
-import users from "../src/users";
-
-interface Inputs {
-  username: string;
-  password: string;
-}
-
-interface User {
-  id: string;
-  username: string;
-  password: string;
-  fullname: string;
-}
+import {userLogin} from "../src/redux/features/userSlice";
+import {useAppDispatch} from "../src/redux/hooks";
+import usersDatabase from "../src/users";
+import auth from "../src/utils/auth";
+import {User, UserInput} from "../src/types";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<Inputs>();
+  } = useForm<UserInput>();
   const router = useRouter();
-  const [user, setUser] = useLocalStorage("gifUser", "");
-  //database mock
-  const [userDatabase, setUserDatabase] = useState<User[]>([]);
+  //const user = useAppSelector((state) => state.user.username);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    setUserDatabase(JSON.parse(users));
-    console.log(users);
-  }, []);
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    const existUser: User | undefined = userDatabase.find(
-      (user) => user.username === data.username && user.password === data.password,
-    );
+  const onSubmit: SubmitHandler<UserInput> = (userInput) => {
+    console.log(userInput);
+    const existUser: User | undefined = auth(usersDatabase, userInput);
 
     if (existUser) {
       router.push("/");
-      setUser();
+      dispatch(userLogin(userInput));
     } else {
-      alert("Usuario no existe");
+      alert("User not found");
     }
   };
 
@@ -76,10 +57,12 @@ const Login = () => {
             className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             placeholder="**********"
-            type="password"
+            type="text"
           />
           {errors.password?.type === "required" && (
-            <p className="text-red-500 text-xs italic">Password is required.</p>
+            <p className="text-red-500 text-xs italic" id="error">
+              Password is required.
+            </p>
           )}
         </div>
         <div className="">
@@ -97,11 +80,11 @@ const Login = () => {
               Forgot Password?
             </a>
           </div>
-          <p className="my-4">or Login with</p>
-          <button className="text-white flex items-center border justify-center rounded-md w-full py-3 font-semibold bg-[#1DA1F2] text-xs hover:bg-[#55ACEF] md:text-md">
+          {/*           <p className="my-4">or Login with</p>
+                    <button className="text-white flex items-center border justify-center rounded-md w-full py-3 font-semibold bg-[#1DA1F2] text-xs hover:bg-[#55ACEF] md:text-md">
             <FaTwitter className="mr-2" size={16} />
             Twitter
-          </button>
+          </button> */}
         </div>
       </form>
       <p className="text-center text-gray-500 text-xs">&copy;2022 Advanced JS Study Group.</p>

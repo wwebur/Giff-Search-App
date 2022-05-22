@@ -26,6 +26,6 @@ const users: User[] = [
   },
 ];
 
-const usersJSON: string = JSON.stringify(users);
+/* //const usersJSON: string = JSON.stringify(users); */
 
-export default usersJSON;
+export default users;
