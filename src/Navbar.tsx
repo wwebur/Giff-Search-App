@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
       <div className="flex gap-4 text-slate-300">
         {Boolean(user) ? (
           <div className="flex items-center text-xs gap-4">
-            <p>Hello, {user}</p>
+            <p id="login-hello">Hello, {user}</p>
             <LoginButton />
           </div>
         ) : (

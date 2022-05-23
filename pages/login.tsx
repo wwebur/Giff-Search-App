@@ -57,28 +57,28 @@ const Login = () => {
             className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             placeholder="**********"
-            type="text"
+            type="password"
           />
-          {errors.password?.type === "required" && (
-            <p className="text-red-500 text-xs italic" id="error">
-              Password is required.
+          {(errors.password?.type || errors.username?.type) === "required" && (
+            <p className="text-red-500 text-xs italic" id="login-error">
+              Complete all required fields.
             </p>
           )}
         </div>
         <div className="">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Sign In
             </button>
-            <a
+            {/*             <a
               className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
               href="#"
             >
               Forgot Password?
-            </a>
+            </a> */}
           </div>
           {/*           <p className="my-4">or Login with</p>
                     <button className="text-white flex items-center border justify-center rounded-md w-full py-3 font-semibold bg-[#1DA1F2] text-xs hover:bg-[#55ACEF] md:text-md">
