@@ -1,31 +1,17 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {searchGif} from "../../api";
+const initialState: any = [];
 
-const fetchGifByQuery = createAsyncThunk(
-  "images/fetchGifByQuery",
-  async (query: string, thunkAPI) => {
-    const response = await searchGif(query);
-    /* return response.data */
-  },
-);
-
-const initialState = {
-  value: "",
-};
-
-export const imagesSlice = createSlice({
+const imagesSlice = createSlice({
   name: "images",
   initialState,
   reducers: {
-    newQuery: (state, action) => {
-      state.value = action.payload;
+    updateImages(state, action: PayloadAction<any>) {
+      state = action.payload;
     },
   },
 });
 
-export const {newQuery} = imagesSlice.actions;
+export const {updateImages} = imagesSlice.actions;
 
 export default imagesSlice.reducer;
-
-//.dispatch(fetchGifByQuery(query))

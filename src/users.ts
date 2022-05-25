@@ -8,24 +8,10 @@ interface User {
 const users: User[] = [
   {
     id: "1",
-    username: "pepeArgento",
-    password: "alfiobasile",
-    fullname: "Jose Argento",
-  },
-  {
-    id: "2",
-    username: "coquiArgento",
-    password: "papucho",
-    fullname: "Alfio Argento",
-  },
-  {
-    id: "3",
-    username: "moniArgento",
-    password: "cafecito",
-    fullname: "Monica Argento",
+    username: "John Doe",
+    password: "123456",
+    fullname: "John Doe",
   },
 ];
-
-/* //const usersJSON: string = JSON.stringify(users); */
 
 export default users;

@@ -3,13 +3,19 @@ import {FaSearch} from "react-icons/fa";
 
 import {searchGif} from "../src/api";
 
+import {updateImages} from "./redux/features/imagesSlice";
+import {useAppDispatch} from "./redux/hooks";
+
 const Searchbox: React.FC = () => {
   const [query, setQuery] = useState<string>("");
 
+  const dispatch = useAppDispatch();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    searchGif(query);
-    console.log(query);
+    const response = searchGif(query);
+
+    dispatch(updateImages(response));
   };
 
   return (

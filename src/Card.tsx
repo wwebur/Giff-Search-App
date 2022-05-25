@@ -16,10 +16,9 @@ const Card: React.FC<Props> = ({gif}) => {
     <div className="card" data-testid="card">
       <Link href={`/${gif.id}`}>
         <a>
-          <Image
+          <img
             alt={gif.title}
             height="100%"
-            layout="responsive"
             objectFit="cover"
             src={gif.images.original.webp}
             width="100%"

@@ -1,19 +1,23 @@
-import type {GetStaticProps, NextPage} from "next";
+import type {GetServerSideProps, GetStaticProps, NextPage} from "next";
 
 import Head from "next/head";
+import {useEffect, useState} from "react";
 import Masonry from "react-masonry-css";
-import {useState} from "react";
 
-import Searchbox from "../src/Searchbox";
 import {trending} from "../src/api";
 import Card from "../src/Card";
+import {useAppSelector} from "../src/redux/hooks";
+import Searchbox from "../src/Searchbox";
+
 //import useLocalStorage from "../src/useLocalStorage";
 interface Props {
   trendingGifs: any;
 }
 
 const Home: NextPage<Props> = ({trendingGifs}) => {
-  const [searchGifs, setSearchGifs] = useState<any[]>([]);
+  /*   const [searchGifs, setSearchGifs] = useState<any[]>([]); */
+
+  const searchGifs = useAppSelector((state) => state.images);
 
   //const [user, setUser] = useLocalStorage("gifUser", "");
 
@@ -52,6 +56,13 @@ const Home: NextPage<Props> = ({trendingGifs}) => {
     </div>
   );
 };
+
+/* export const getServerSideProps: GetServerSideProps = async () => {
+  const trendingGifs = await trending;
+  const props = {trendingGifs};
+
+  return {props};
+}; */
 
 export const getStaticProps: GetStaticProps = async () => {
   const trendingGifs = await trending();

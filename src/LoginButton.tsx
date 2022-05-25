@@ -15,7 +15,7 @@ const LoginButton: React.FC = () => {
 
   return (
     <button
-      className="flex items-center border rounded-md px-4 py-1 font-semibold hover:text-slate-500 text-xs md:text-md"
+      className="card flex items-center border rounded-none px-4 py-1 font-semibold hover:text-slate-500 hover:bg-slate-300 text-xs md:text-md"
       id="login-button"
       onClick={handleClick}
     >

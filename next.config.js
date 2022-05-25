@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  publicRuntimeConfig: {
+    api_key: process.env.API_KEY,
+  },
   reactStrictMode: true,
   images: {
     domains: [
