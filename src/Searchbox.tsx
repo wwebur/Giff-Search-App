@@ -11,17 +11,17 @@ const Searchbox: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = searchGif(query);
+    const response = await searchGif(query);
 
-    dispatch(updateImages(response));
+    dispatch(updateImages(response.data));
   };
 
   return (
-    <form className="flex justify-center my-6" onSubmit={handleSubmit}>
+    <form className="ml-3 flex justify-center my-6" onSubmit={handleSubmit}>
       <input
-        className="py-2 px-4 placeholder:text-xl"
+        className="py-2 px-4 placeholder:text-xl w-full"
         placeholder="Search..."
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
       />

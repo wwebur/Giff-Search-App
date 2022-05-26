@@ -1,13 +1,19 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState: any = [];
+interface ImagesState {
+  images: any[];
+}
+
+const initialState: ImagesState = {
+  images: [],
+};
 
 const imagesSlice = createSlice({
   name: "images",
   initialState,
   reducers: {
     updateImages(state, action: PayloadAction<any>) {
-      state = action.payload;
+      state.images = action.payload;
     },
   },
 });

@@ -19,8 +19,8 @@ describe("Navigation", () => {
     cy.visit("http://localhost:3000/nonexisting", {failOnStatusCode: false});
 
     // Make sure that the error section shows with the corresponding message.
-    cy.get("h2").contains("404");
-    cy.get("p").contains("Page Not Found");
+    cy.get("h1").contains("404");
+    cy.get("h2").contains("This page could not be found");
   });
 });
 

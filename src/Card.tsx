@@ -1,7 +1,6 @@
 import {useState} from "react";
 import {FaHeart} from "react-icons/fa";
 import Link from "next/link";
-import Image from "next/image";
 
 import Dropdown from "./Dropdown";
 interface Props {
@@ -16,13 +15,7 @@ const Card: React.FC<Props> = ({gif}) => {
     <div className="card" data-testid="card">
       <Link href={`/${gif.id}`}>
         <a>
-          <img
-            alt={gif.title}
-            height="100%"
-            objectFit="cover"
-            src={gif.images.original.webp}
-            width="100%"
-          />
+          <img alt={gif.title} height="100%" src={gif.images.original.webp} width="100%" />
         </a>
       </Link>
       <div className="flex justify-between gap-2 items-center mx-4">

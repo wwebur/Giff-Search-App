@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {UserInput} from "./../../types";
 
-export interface UserState {
+interface UserState {
   username: null | string;
   isLogin: boolean;
 }

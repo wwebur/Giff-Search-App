@@ -9,7 +9,7 @@ import Navbar from "../src/Navbar";
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <Provider store={store}>
-      <div className="container text-center justify-center">
+      <div className="container max-w-7xl text-center justify-center">
         <Navbar />
         <Component {...pageProps} />
       </div>

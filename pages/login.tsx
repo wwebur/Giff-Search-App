@@ -18,7 +18,6 @@ const Login = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<UserInput> = (userInput) => {
-    console.log(userInput);
     const existUser: User | undefined = auth(usersDatabase, userInput);
 
     if (existUser) {

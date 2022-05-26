@@ -12,8 +12,6 @@ const GifDetail: React.FC<Props> = ({gif}) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const like = () => (isLiked ? setIsLiked(false) : setIsLiked(true));
 
-  console.log(gif);
-
   return (
     <div className="flex h-screen items-center justify-center flex-col">
       <h1 className="my-10 text-2xl text-slate-300 font-semibold">{gif.title}</h1>

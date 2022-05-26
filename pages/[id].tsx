@@ -1,56 +1,28 @@
-import {GetStaticPaths, GetStaticProps} from "next";
+import {GetServerSideProps} from "next";
 
-import {trending} from "../src/api";
 import {getGifById} from "../src/api";
 import GifDetail from "../src/GifDetail";
 
 interface Props {
-  gif: any;
+  gifData: any;
 }
 
-const Gif: React.FC<Props> = ({gif}) => {
+const Gif: React.FC<Props> = ({gifData}) => {
   return (
     <div>
-      <GifDetail gif={gif} />
+      <GifDetail gif={gifData} />
     </div>
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const {params} = context;
+  const {id} = params;
+  const gifData = await getGifById(id);
+
+  return {
+    props: {gifData},
+  };
+};
+
 export default Gif;
-
-type PathType = {
-  params: {
-    id: string;
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const gifs = await trending();
-  const paths: PathType[] = gifs.map((gif: any) => {
-    return {
-      params: {id: gif.id},
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({params}) => {
-  const id = params?.id;
-
-  if (typeof id !== "string") {
-    return {
-      notFound: true,
-    };
-  }
-  const gif = await getGifById(id);
-
-  return {
-    props: {
-      gif,
-    },
-  };
-};

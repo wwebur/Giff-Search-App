@@ -9,7 +9,6 @@ const LoginButton: React.FC = () => {
   const router = useRouter();
 
   const handleClick = () => {
-    console.log("hello", user);
     Boolean(user) ? dispatch(userLogout()) : router.push("/login");
   };
 

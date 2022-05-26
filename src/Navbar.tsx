@@ -7,8 +7,6 @@ import {useAppSelector} from "./redux/hooks";
 const Navbar: React.FC = () => {
   const user = useAppSelector((state) => state.user.username);
 
-  console.log("este es el user", user);
-
   return (
     <nav className="flex justify-between items-center mx-4">
       <Link href="/">
