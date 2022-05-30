@@ -1,7 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
+import {IGif} from "./../../types";
+
 interface ImagesState {
-  images: any[];
+  images: IGif[];
 }
 
 const initialState: ImagesState = {
@@ -12,7 +14,7 @@ const imagesSlice = createSlice({
   name: "images",
   initialState,
   reducers: {
-    updateImages(state, action: PayloadAction<any>) {
+    updateImages(state, action: PayloadAction<IGif[]>) {
       state.images = action.payload;
     },
   },

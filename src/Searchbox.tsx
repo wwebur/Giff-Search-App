@@ -15,7 +15,7 @@ const Searchbox: React.FC = () => {
     e.preventDefault();
     const response = await searchGif(query);
 
-    dispatch(updateImages(response.data));
+    response && dispatch(updateImages(response));
   };
 
   return (

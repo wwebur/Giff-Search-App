@@ -18,7 +18,6 @@ const LoginButton: React.FC = () => {
       id="login-button"
       onClick={handleClick}
     >
-      {/* <FaTwitter className="mr-2" size={16} /> */}
       {Boolean(user) ? "Logout" : "Login"}
     </button>
   );

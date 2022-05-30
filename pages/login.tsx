@@ -46,6 +46,7 @@ const Login = () => {
             placeholder="Username"
             type="text"
           />
+          <p className="text-left	text-xs self-start text-gray-300">John Doe</p>
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -53,11 +54,12 @@ const Login = () => {
           </label>
           <input
             {...register("password", {required: true})}
-            className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             placeholder="**********"
             type="password"
           />
+          <p className="text-left	text-xs self-start text-gray-300 mb-3">123456</p>
           {(errors.password?.type || errors.username?.type) === "required" && (
             <p className="text-red-500 text-xs italic" id="login-error">
               Complete all required fields.
@@ -72,21 +74,10 @@ const Login = () => {
             >
               Sign In
             </button>
-            {/*             <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              Forgot Password?
-            </a> */}
           </div>
-          {/*           <p className="my-4">or Login with</p>
-                    <button className="text-white flex items-center border justify-center rounded-md w-full py-3 font-semibold bg-[#1DA1F2] text-xs hover:bg-[#55ACEF] md:text-md">
-            <FaTwitter className="mr-2" size={16} />
-            Twitter
-          </button> */}
         </div>
       </form>
-      <p className="text-center text-gray-500 text-xs">&copy;2022 Advanced JS Study Group.</p>
+      <p className="text-center text-gray-500 text-xs">2022 Advanced JS Study Group.</p>
     </div>
   );
 };

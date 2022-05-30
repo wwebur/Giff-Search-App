@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import LoginButton from "./LoginButton";
 import {useAppSelector} from "./redux/hooks";
+import UserInfo from "./UserInfo";
 
 const Navbar: React.FC = () => {
   const user = useAppSelector((state) => state.user.username);
@@ -14,15 +15,8 @@ const Navbar: React.FC = () => {
           <Image alt="frontend cafe logo" height={50} src="/logotype-fec.svg" width={200} />
         </a>
       </Link>
-      <div className="flex gap-4 text-slate-300">
-        {Boolean(user) ? (
-          <div className="flex items-center text-xs gap-4">
-            <p id="login-hello">Hello, {user}</p>
-            <LoginButton />
-          </div>
-        ) : (
-          <LoginButton />
-        )}
+      <div>
+        <div className=" text-slate-300">{Boolean(user) ? <UserInfo /> : <LoginButton />}</div>
       </div>
     </nav>
   );
