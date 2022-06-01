@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import parseGif from "./parseGif";
+import {parseGifList, parseSingleGif} from "./utils/parseGif";
 import {IGif} from "./types";
 
 const LIMIT_GIF = 20;
@@ -18,9 +18,7 @@ const requester = axios.create({
 async function trending() {
   try {
     const response = await requester.get("/trending");
-
-    console.log(response);
-    const data: IGif[] = parseGif(response.data.data);
+    const data: IGif[] = parseGifList(response.data.data);
 
     return data;
   } catch (error) {
@@ -36,7 +34,7 @@ async function searchGif(query: string) {
       },
     });
 
-    const data: IGif[] = parseGif(response.data.data);
+    const data: IGif[] = parseGifList(response.data.data);
 
     return data;
   } catch (error) {
@@ -47,9 +45,9 @@ async function searchGif(query: string) {
 async function getGifById(gif_id: string) {
   try {
     const response = await requester.get(`/${gif_id}`);
-    const data = parseGif(response.data.data);
+    const data: IGif = parseSingleGif(response.data.data);
 
-    return response.data.data;
+    return data;
   } catch (error) {
     console.error(error);
   }

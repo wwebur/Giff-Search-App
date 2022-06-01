@@ -14,7 +14,6 @@ const Login = () => {
     formState: {errors},
   } = useForm<UserInput>();
   const router = useRouter();
-  //const user = useAppSelector((state) => state.user.username);
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<UserInput> = (userInput) => {

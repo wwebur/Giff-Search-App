@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import {useAppSelector} from "../../redux/hooks";
+
 import LoginButton from "./LoginButton";
-import {useAppSelector} from "./redux/hooks";
 import UserInfo from "./UserInfo";
 
 const Navbar: React.FC = () => {

@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {FaSearch} from "react-icons/fa";
 
-import {searchGif} from "../src/api";
-
-import {updateImages} from "./redux/features/imagesSlice";
-import {useAppDispatch} from "./redux/hooks";
+import {searchGif} from "../../api";
+import {updateImages, changedWordSearch} from "../../redux/features/imagesSlice";
+import {useAppDispatch} from "../../redux/hooks";
 
 const Searchbox: React.FC = () => {
   const [query, setQuery] = useState<string>("");
@@ -16,6 +15,7 @@ const Searchbox: React.FC = () => {
     const response = await searchGif(query);
 
     response && dispatch(updateImages(response));
+    dispatch(changedWordSearch(query.trim()));
   };
 
   return (

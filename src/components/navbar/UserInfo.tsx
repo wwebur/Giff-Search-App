@@ -1,8 +1,9 @@
 import Link from "next/link";
 import {FaHeart} from "react-icons/fa";
 
+import {useAppSelector} from "../../redux/hooks";
+
 import LoginButton from "./LoginButton";
-import {useAppSelector} from "./redux/hooks";
 
 const UserInfo: React.FC = () => {
   const user = useAppSelector((state) => state.user.username);

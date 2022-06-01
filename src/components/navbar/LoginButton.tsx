@@ -1,7 +1,7 @@
 import {useRouter} from "next/router";
 
-import {userLogout} from "./redux/features/userSlice";
-import {useAppDispatch, useAppSelector} from "./redux/hooks";
+import {userLogout} from "../../redux/features/userSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 
 const LoginButton: React.FC = () => {
   const user = useAppSelector((state) => state.user.username);

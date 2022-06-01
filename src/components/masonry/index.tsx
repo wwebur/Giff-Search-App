@@ -1,11 +1,11 @@
 import Masonry from "react-masonry-css";
 
-import Card from "./Card";
-import {IGif} from "./types";
+import {IGif} from "../../types";
+import Card from "../gif/Card";
 
 interface MasonryProps {
   currentGifs: IGif[];
-  hasLikeButton: boolean;
+  isHidden: boolean;
 }
 const breakpoints = {
   default: 4,
@@ -14,7 +14,7 @@ const breakpoints = {
   500: 1,
 };
 
-const MasonryComponent: React.FC<MasonryProps> = ({currentGifs, hasLikeButton}) => {
+const MasonryComponent: React.FC<MasonryProps> = ({currentGifs, isHidden}) => {
   return (
     <Masonry
       breakpointCols={breakpoints}
@@ -22,7 +22,7 @@ const MasonryComponent: React.FC<MasonryProps> = ({currentGifs, hasLikeButton}) 
       columnClassName="my-masonry-grid_column"
     >
       {currentGifs.map((item: IGif) => (
-        <Card key={item.id} gif={item} hasLikeButton={hasLikeButton} />
+        <Card key={item.id} gif={item} isHidden={isHidden} />
       ))}
     </Masonry>
   );

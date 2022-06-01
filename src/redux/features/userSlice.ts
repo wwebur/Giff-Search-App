@@ -34,13 +34,12 @@ const userSlice = createSlice({
 
       state.likedGifs = state.likedGifs.filter((item) => item.id !== id);
     },
-    userDeletedAllLikedGif(state) {
+    /* userDeletedAllLikedGif(state) {
       state.likedGifs = [];
-    },
+    }, */
   },
 });
 
-export const {userLogin, userLogout, userLikedGif, userDeletedLikedGif, userDeletedAllLikedGif} =
-  userSlice.actions;
+export const {userLogin, userLogout, userLikedGif, userDeletedLikedGif} = userSlice.actions;
 
 export default userSlice.reducer;
